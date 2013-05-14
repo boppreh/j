@@ -1,6 +1,7 @@
 import os
 from subprocess import Popen
-from background import tray, notify, register_many_hotkeys
+from background import tray, notify
+from keyboard import register_hotkey
 import string
 
 tray('J', 'j.ico')
@@ -43,10 +44,7 @@ class J(object):
 
 j = J()
 
-def make_callback(letter):
-    return lambda: j.next(letter)
+for letter in string.lowercase:
+    register_hotkey('lcontrol+rmenu+' + letter, j.next, letter)
 
-hotkeys = [(c, make_callback(c)) for c in string.lowercase]
-
-register_many_hotkeys(hotkeys, alt=True, ctrl=True)
 #user32.UnregisterHotKey(None, j)
