@@ -1,2 +1,2 @@
 from switcher import switch
-switch(r'D:\media\Dropbox\editor\structured-editor')
+switch(r'D:\projects\structured-editor')
