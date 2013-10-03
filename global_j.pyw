@@ -2,9 +2,11 @@ import os
 from subprocess import Popen
 from background import tray, notify
 from keyboard import register_hotkey
+from simpleserver import serve
 import string
 
 tray('J', 'j.ico')
+serve({}, port=2344)
 
 class J(object):
     def __init__(self):
@@ -24,7 +26,6 @@ class J(object):
 
     def next(self, letter):
         try:
-
             folder_items = os.listdir(self.path)
             names = [name for name in folder_items if name.startswith(letter)]
 
