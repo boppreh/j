@@ -5,15 +5,22 @@ from keyboard import register_hotkey
 from simpleserver import serve
 import string
 
+last_commands = []
+
 tray('J', 'j.ico')
-serve({}, port=2344)
+serve(last_commands, port=2344)
 
 class J(object):
     def __init__(self):
         self.path = '.'
+        self.letters = ''
 
     def _execute(self):
         assert os.path.isfile(self.path)
+
+        last_commands.append(self.letters)
+        if len(last_commands) > 50:
+            last_commands.pop(0)
 
         full_path = '"' + os.path.abspath(self.path) + '"'
 
@@ -31,11 +38,13 @@ class J(object):
 
             if names:
                 self.path += '/' + names[0]
+                self.letters += letter
                 if os.path.isfile(self.path):
                     self._execute()
 
             if not os.path.isdir(self.path):
                 self.path = '.'
+                self.letters = ''
 
         except Exception as e:
             notify('Error', e.message)
