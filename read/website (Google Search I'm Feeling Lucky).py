@@ -1,3 +1,4 @@
-import webbrowser, urllib2
+from urllib.parse import quote
+import webbrowser
 webbrowser.open('https://encrypted.google.com/search?q=' + 
-                urllib2.quote(raw_input()) + '&btnI')
+                quote(input()) + '&btnI')

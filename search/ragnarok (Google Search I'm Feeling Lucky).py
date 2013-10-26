@@ -1,3 +1,2 @@
-import webbrowser, urllib2
-webbrowser.open('https://encrypted.google.com/search?q=' + 
-                urllib2.quote('ragnarok ' + raw_input()) + '&btnI')
+from search_library import open_search
+open_search('https://encrypted.google.com/search?q=')

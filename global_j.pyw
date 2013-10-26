@@ -1,6 +1,6 @@
 import os
 from subprocess import Popen
-from background import tray, notify
+from tray import tray, notify
 from keyboard import register_hotkey
 from simpleserver import serve
 import string
@@ -48,13 +48,13 @@ class J(object):
 
         except Exception as e:
             notify('Error', e.message)
-            print e
+            print(e)
             with open('errors.txt', 'a') as file:
                 file.write(str(e) + '\n\n')
 
 j = J()
 
-for letter in string.lowercase:
+for letter in string.ascii_lowercase:
     register_hotkey('lcontrol+rmenu+' + letter, j.next, letter)
 
 #user32.UnregisterHotKey(None, j)

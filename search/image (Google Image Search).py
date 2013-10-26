@@ -1,3 +1,2 @@
-import webbrowser, urllib2
-webbrowser.open('https://encrypted.google.com/search?tbm=isch&q=' +
-                urllib2.quote(raw_input()))
+from search_library import open_search
+open_search('https://encrypted.google.com/search?tbm=isch&q=')
